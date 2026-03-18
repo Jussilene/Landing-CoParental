@@ -60,6 +60,11 @@ const openCheckoutModal = () => {
 };
 
 const closeCheckoutModal = () => {
+  const activeElement = document.activeElement;
+  if (activeElement instanceof HTMLElement && modal.contains(activeElement)) {
+    activeElement.blur();
+  }
+
   modal.hidden = true;
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";

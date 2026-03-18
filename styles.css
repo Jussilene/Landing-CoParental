@@ -29,17 +29,18 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   font-family: "Manrope", "Segoe UI", sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(95, 140, 255, 0.18), transparent 24%),
     radial-gradient(circle at top right, rgba(59, 200, 159, 0.18), transparent 24%),
     linear-gradient(180deg, #fbfefe 0%, #f4fbf9 48%, #ffffff 100%);
-  perspective: 1200px;
 }
 
 a {
@@ -366,7 +367,6 @@ select {
 .benefit-card::after,
 .showcase-card::after,
 .testimonial-card::after,
-.faq-list details::after,
 .modal-points article::after {
   content: "";
   position: absolute;
@@ -401,7 +401,6 @@ select {
 .benefit-card:is(:hover, :focus-visible, .is-active)::after,
 .showcase-card:is(:hover, :focus-visible, .is-active)::after,
 .testimonial-card:is(:hover, :focus-visible, .is-active)::after,
-.faq-list details:is(:hover, :focus-visible, .is-active)::after,
 .modal-points article:is(:hover, :focus-visible, .is-active)::after {
   opacity: 1;
 }
@@ -681,13 +680,13 @@ select {
 .vertical-stage {
   display: grid;
   place-items: center;
-  min-height: 720px;
-  padding: 28px 20px;
+  min-height: 0;
+  padding: 20px;
 }
 
 .promo-vertical-frame {
-  width: min(100%, 360px);
-  border-radius: 34px;
+  width: min(100%, 460px);
+  border-radius: 28px;
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(25, 41, 54, 0.2), rgba(25, 41, 54, 0.06)),
@@ -701,9 +700,9 @@ select {
 .promo-vertical-video {
   display: block;
   width: 100%;
-  aspect-ratio: 9 / 19.5;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
   background: #eef6f4;
 }
 
@@ -1388,18 +1387,24 @@ select {
 
 .pricing-meta {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 12px;
   margin-bottom: 18px;
   color: var(--muted);
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .pricing-meta span {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .meta-icon {
@@ -1641,6 +1646,7 @@ select {
 
 .sticky-mobile-cta {
   position: fixed;
+  inset: auto 12px 12px 12px;
   left: 12px;
   right: 12px;
   bottom: 12px;
@@ -1689,6 +1695,8 @@ select {
   position: fixed;
   inset: 0;
   z-index: 50;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .checkout-backdrop {
@@ -1699,10 +1707,11 @@ select {
 
 .checkout-dialog {
   position: relative;
-  width: min(calc(100% - 24px), 720px);
-  max-height: calc(100vh - 32px);
+  width: min(calc(100% - 20px), 720px);
+  max-width: calc(100% - 20px);
+  max-height: calc(100dvh - 20px);
   overflow: auto;
-  margin: 16px auto;
+  margin: 10px auto;
   padding: 24px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.96);
@@ -1762,6 +1771,45 @@ select {
     translate3d(var(--fx-x, 0px), var(--fx-y, 0px), 0)
     rotate(var(--fx-rotate, 0deg))
     scale(var(--fx-scale, 1));
+}
+
+.steps-section,
+.proof-section,
+.offer-section,
+.urgency-card,
+.faq-section,
+.final-panel,
+.pricing-card,
+.testimonial-card,
+.faq-list details,
+.modal-points article,
+.flow-step,
+.steps-section .section-header,
+.proof-section .section-header,
+.offer-section .section-header,
+.faq-section .section-header {
+  opacity: 1;
+}
+
+.steps-section.reveal-on-scroll,
+.proof-section.reveal-on-scroll,
+.offer-section.reveal-on-scroll,
+.urgency-card.reveal-on-scroll,
+.faq-section.reveal-on-scroll,
+.final-panel.reveal-on-scroll,
+.pricing-card.reveal-on-scroll,
+.testimonial-card.reveal-on-scroll,
+.faq-list details.reveal-on-scroll,
+.modal-points article.reveal-on-scroll,
+.flow-step.reveal-on-scroll,
+.steps-section .section-header.reveal-on-scroll,
+.proof-section .section-header.reveal-on-scroll,
+.offer-section .section-header.reveal-on-scroll,
+.faq-section .section-header.reveal-on-scroll {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 @supports (animation-timeline: view()) {
@@ -1953,6 +2001,28 @@ select {
 }
 
 @media (max-width: 759px) {
+  .reveal-on-scroll,
+  .steps-section,
+  .proof-section,
+  .offer-section,
+  .urgency-card,
+  .faq-section,
+  .final-panel,
+  .pricing-card,
+  .testimonial-card,
+  .faq-list details,
+  .modal-points article,
+  .flow-step,
+  .steps-section .section-header,
+  .proof-section .section-header,
+  .offer-section .section-header,
+  .faq-section .section-header {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   .page-shell {
     padding-bottom: 132px;
   }
@@ -2009,12 +2079,12 @@ select {
 
   .vertical-stage {
     min-height: 0;
-    padding: 18px 14px;
+    padding: 14px 12px;
   }
 
   .promo-vertical-frame {
-    width: min(100%, 320px);
-    border-radius: 26px;
+    width: min(100%, 300px);
+    border-radius: 24px;
   }
 
   .sticky-mobile-cta {
@@ -2043,11 +2113,19 @@ select {
     right: 10px;
     bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     width: auto;
-    width: calc(100dvw - 20px);
-    max-width: calc(100dvw - 20px);
+    max-width: none;
     transform: none;
     padding: 10px 10px calc(10px + env(safe-area-inset-bottom, 0px));
     border-radius: 18px;
+  }
+
+  .checkout-dialog {
+    width: calc(100% - 16px);
+    max-width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    margin: 8px auto;
+    padding: 18px;
+    border-radius: 22px;
   }
 
   .sticky-mobile-cta .button {
