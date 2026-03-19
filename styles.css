@@ -2237,6 +2237,10 @@ select {
   display: none;
 }
 
+.cta-fixo-mobile[hidden] {
+  display: none !important;
+}
+
 .checkout-modal[hidden] {
   display: none;
 }

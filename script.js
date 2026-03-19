@@ -5,6 +5,7 @@ const modalCloseButtons = document.querySelectorAll("[data-close-checkout]");
 const modalOpenButtons = document.querySelectorAll("[data-open-checkout]");
 const continueCheckout = document.getElementById("continue-checkout");
 const allButtons = document.querySelectorAll(".button");
+const stickyMobileCta = document.querySelector(".cta-fixo-mobile");
 const interactiveCards = document.querySelectorAll([
   ".mini-card",
   ".pain-card",
@@ -148,6 +149,7 @@ const applyConversionCopy = () => {
 const openCheckoutModal = () => {
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
+  stickyMobileCta?.setAttribute("hidden", "");
   document.body.style.overflow = "hidden";
 };
 
@@ -159,6 +161,7 @@ const closeCheckoutModal = () => {
 
   modal.hidden = true;
   modal.setAttribute("aria-hidden", "true");
+  stickyMobileCta?.removeAttribute("hidden");
   document.body.style.overflow = "";
 };
 
