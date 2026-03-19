@@ -652,6 +652,14 @@ select {
   color: #5f7184;
 }
 
+.hero-risk {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #3f5d74;
+  line-height: 1.45;
+}
+
 .button {
   position: relative;
   display: inline-flex;
@@ -891,6 +899,15 @@ select {
   text-align: center;
 }
 
+.video-intent {
+  margin: 4px auto 18px;
+  text-align: center;
+  color: #5d7388;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .video-proof {
   margin: 18px auto 0;
   text-align: center;
@@ -1031,6 +1048,15 @@ select {
   font-size: 1.02rem;
   font-weight: 700;
   color: #1d2e3f;
+}
+
+.pain-loss {
+  margin: 20px 0 0;
+  text-align: center;
+  color: #274257;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.6;
 }
 
 .attention-cta {
@@ -1573,6 +1599,23 @@ select {
 .proof-cta-block .button:focus-visible {
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 22px 40px rgba(255, 116, 72, 0.26), 0 10px 20px rgba(255, 116, 72, 0.14);
+}
+
+.proof-social-count {
+  margin: 2px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(100%, 760px);
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(95, 140, 255, 0.08);
+  box-shadow: 0 8px 20px rgba(34, 68, 90, 0.04);
+  color: #55708b;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .steps-flow {
@@ -2811,6 +2854,10 @@ select {
     font-size: 0.9rem;
   }
 
+  .hero-risk {
+    font-size: 0.88rem;
+  }
+
   .section-header h2,
   .difference-panel h2,
   .final-panel h2,
@@ -2889,6 +2936,23 @@ select {
 
   .video-emotion-copy p {
     font-size: 1rem;
+  }
+
+  .video-intent {
+    margin: 2px auto 14px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .pain-loss {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .proof-social-count {
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    line-height: 1.4;
   }
 
   .cta-fixo-mobile {

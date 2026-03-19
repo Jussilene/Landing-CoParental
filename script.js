@@ -53,6 +53,98 @@ const parallaxTargets = document.querySelectorAll([
   ".final-panel"
 ].join(", "));
 
+const ensureTextElement = ({ parentSelector, selector, tag = "p", className, text, insertAfterSelector, insertBeforeSelector }) => {
+  const parent = document.querySelector(parentSelector);
+  if (!parent) {
+    return null;
+  }
+
+  let element = parent.querySelector(selector);
+  if (!element) {
+    element = document.createElement(tag);
+    if (className) {
+      element.className = className;
+    }
+
+    if (insertAfterSelector) {
+      const anchor = parent.querySelector(insertAfterSelector);
+      if (anchor?.parentNode === parent) {
+        anchor.insertAdjacentElement("afterend", element);
+      } else {
+        parent.appendChild(element);
+      }
+    } else if (insertBeforeSelector) {
+      const anchor = parent.querySelector(insertBeforeSelector);
+      if (anchor?.parentNode === parent) {
+        parent.insertBefore(element, anchor);
+      } else {
+        parent.appendChild(element);
+      }
+    } else {
+      parent.appendChild(element);
+    }
+  }
+
+  element.textContent = text;
+  return element;
+};
+
+const setElementText = (selector, text) => {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.textContent = text;
+  }
+};
+
+const applyConversionCopy = () => {
+  setElementText(".hero-proof", "Centenas de famílias já estão reduzindo conflitos com o CoParental");
+  setElementText(".pricing-badge", "🔥 Oferta de lançamento por tempo limitado");
+  setElementText(".pricing-subtitle", "Valor promocional para os primeiros usuários");
+  setElementText(".pricing-access-note", "Esse valor pode sair do ar a qualquer momento.");
+  setElementText(".pricing-button", "QUERO ORGANIZAR MINHA ROTINA AGORA");
+  setElementText(".video-cta-button", "QUERO PARAR COM AS DISCUSSÕES");
+  setElementText(".attention-cta .button", "QUERO PARAR COM AS DISCUSSÕES");
+  setElementText(".steps-section .section-cta .button", "QUERO PARAR COM AS DISCUSSÕES");
+  setElementText(".urgency-cta .button", "QUERO PARAR COM AS DISCUSSÕES");
+  setElementText(".final-microcopy", "Teste sem risco. Cancele quando quiser em poucos cliques.");
+  setElementText(".proof-section .section-header p", "Pais separados já estão usando o CoParental para organizar rotina, pensão e comunicação.");
+
+  ensureTextElement({
+    parentSelector: ".hero-cta-wrap",
+    selector: ".hero-risk",
+    tag: "p",
+    className: "hero-risk",
+    text: "Teste sem risco. Cancele quando quiser em poucos cliques.",
+    insertAfterSelector: ".hero-urgency"
+  });
+
+  ensureTextElement({
+    parentSelector: ".video-section",
+    selector: ".video-intent",
+    tag: "p",
+    className: "video-intent",
+    text: "Assista e entenda por que isso está acontecendo",
+    insertAfterSelector: ".section-header"
+  });
+
+  ensureTextElement({
+    parentSelector: ".attention-card",
+    selector: ".pain-loss",
+    tag: "p",
+    className: "pain-loss",
+    text: "Cada dia sem organização é mais estresse, mais conflito e mais impacto nos seus filhos.",
+    insertBeforeSelector: ".attention-note"
+  });
+
+  ensureTextElement({
+    parentSelector: ".proof-section .section-header",
+    selector: ".proof-social-count",
+    tag: "p",
+    className: "proof-social-count",
+    text: "Cada vez mais pais estão organizando a rotina com o CoParental."
+  });
+};
+
 const openCheckoutModal = () => {
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
@@ -71,6 +163,7 @@ const closeCheckoutModal = () => {
 };
 
 continueCheckout.setAttribute("href", PAYMENT_URL);
+applyConversionCopy();
 
 modalOpenButtons.forEach((button) => {
   button.addEventListener("click", openCheckoutModal);
