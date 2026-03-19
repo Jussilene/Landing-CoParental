@@ -1,4 +1,4 @@
-const PAYMENT_URL = "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=93993b12f1834398b6cc8b804d1d16a3";
+const PAYMENT_URL = "https://pay.hotmart.com/B104984952T?bid=1773947079101&offDiscount=PROMO50";
 
 const modal = document.querySelector(".checkout-modal");
 const modalCloseButtons = document.querySelectorAll("[data-close-checkout]");
@@ -97,6 +97,33 @@ const setElementText = (selector, text) => {
   }
 };
 
+const applyCheckoutCopy = () => {
+  if (!modal) {
+    return;
+  }
+
+  const modalIntro = modal.querySelector("#checkout-title + p");
+  const modalBadge = modal.querySelector(".modal-security-badge");
+  const modalSecurityText = modal.querySelector(".modal-points article:first-child p");
+  const modalCta = modal.querySelector("#continue-checkout");
+
+  if (modalIntro) {
+    modalIntro.textContent = "Pagamento 100% seguro via Hotmart. Seu acesso é liberado imediatamente após a confirmação.";
+  }
+
+  if (modalBadge) {
+    modalBadge.textContent = "🔒 Ambiente seguro • Protegido pela Hotmart";
+  }
+
+  if (modalSecurityText) {
+    modalSecurityText.textContent = "Seus dados protegidos com tecnologia segura da Hotmart";
+  }
+
+  if (modalCta) {
+    modalCta.textContent = "🔓 LIBERAR MEU ACESSO AGORA";
+  }
+};
+
 const applyConversionCopy = () => {
   setElementText(".hero-proof", "Centenas de famílias já estão reduzindo conflitos com o CoParental");
   setElementText(".pricing-badge", "🔥 Oferta de lançamento por tempo limitado");
@@ -109,6 +136,10 @@ const applyConversionCopy = () => {
   setElementText(".urgency-cta .button", "QUERO PARAR COM AS DISCUSSÕES");
   setElementText(".final-microcopy", "Teste sem risco. Cancele quando quiser em poucos cliques.");
   setElementText(".proof-section .section-header p", "Pais separados já estão usando o CoParental para organizar rotina, pensão e comunicação.");
+  setElementText(".checkout-dialog > p", "Pagamento 100% seguro via Hotmart. Seu acesso e liberado imediatamente apos a confirmacao.");
+  setElementText(".modal-security-badge", "🔒 Ambiente seguro • Protegido pela Hotmart");
+  setElementText(".modal-points article:first-child p", "Seus dados protegidos com tecnologia segura da Hotmart");
+  setElementText("#continue-checkout", "🔓 LIBERAR MEU ACESSO AGORA");
 
   ensureTextElement({
     parentSelector: ".hero-cta-wrap",
@@ -147,6 +178,7 @@ const applyConversionCopy = () => {
 };
 
 const openCheckoutModal = () => {
+  applyCheckoutCopy();
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
   stickyMobileCta?.setAttribute("hidden", "");
@@ -154,6 +186,10 @@ const openCheckoutModal = () => {
 };
 
 const closeCheckoutModal = () => {
+  if (!modal) {
+    return;
+  }
+
   const activeElement = document.activeElement;
   if (activeElement instanceof HTMLElement && modal.contains(activeElement)) {
     activeElement.blur();
@@ -165,8 +201,11 @@ const closeCheckoutModal = () => {
   document.body.style.overflow = "";
 };
 
-continueCheckout.setAttribute("href", PAYMENT_URL);
+if (continueCheckout) {
+  continueCheckout.setAttribute("href", PAYMENT_URL);
+}
 applyConversionCopy();
+applyCheckoutCopy();
 
 modalOpenButtons.forEach((button) => {
   button.addEventListener("click", openCheckoutModal);
