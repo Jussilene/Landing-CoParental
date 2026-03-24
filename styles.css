@@ -938,17 +938,246 @@ select {
   line-height: 1.7;
 }
 
-.video-cta-button {
-  position: relative;
-  min-width: min(100%, 440px);
+.video-offer-component {
+  max-width: 800px;
+  margin: 24px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
   border-radius: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  background:
+    radial-gradient(circle at top center, rgba(126, 214, 183, 0.22), rgba(126, 214, 183, 0) 34%),
+    linear-gradient(135deg, #2a6c78, #3ca48e 52%, #69cdb0 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  animation: video-offer-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.video-cta-button:hover,
-.video-cta-button:focus-visible {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 18px 34px rgba(255, 116, 72, 0.22), 0 10px 18px rgba(255, 116, 72, 0.12);
+.video-offer-component__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.video-offer-component__title {
+  margin: 18px 0 0;
+  font-family: "Sora", "Manrope", sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.video-offer-component__subtitle {
+  margin: 16px 0 0;
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.video-offer-component__urgency-tag {
+  margin: 16px 0 0;
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.video-offer-component__price-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 24px 24px 22px;
+  border-radius: 12px;
+  margin: 22px 0 0;
+  width: min(100%, 420px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  text-align: center;
+}
+
+.video-offer-component__old-price {
+  margin: 0;
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.video-offer-component__price {
+  margin: 10px auto 0;
+  display: block;
+  width: fit-content;
+  font-family: "Sora", "Manrope", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #ffcf68;
+  letter-spacing: -0.05em;
+  word-break: break-word;
+  transform: translateX(-18px);
+  text-shadow:
+    0 10px 24px rgba(255, 143, 63, 0.22),
+    0 0 20px rgba(250, 204, 21, 0.4);
+}
+
+.video-offer-component__benefits {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.video-offer-component__benefits span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.video-offer-component__button {
+  margin-top: 24px;
+  padding: 16px 32px;
+  background: #ff7a4d;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 800;
+  width: min(100%, 520px);
+  box-shadow: 0 15px 35px rgba(255, 122, 77, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: video-offer-cta-pulse 2.8s ease-in-out infinite;
+}
+
+.video-offer-component__button:hover,
+.video-offer-component__button:focus-visible {
+  transform: scale(1.03);
+  box-shadow: 0 14px 30px rgba(255, 122, 77, 0.46);
+}
+
+.video-offer-component__note {
+  margin-top: 24px;
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+  text-align: center;
+}
+
+@keyframes video-offer-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes video-offer-cta-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 18px 34px rgba(255, 116, 72, 0.28),
+      0 10px 18px rgba(255, 116, 72, 0.12),
+      0 0 0 rgba(255, 132, 73, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 20px 38px rgba(255, 116, 72, 0.32),
+      0 10px 18px rgba(255, 116, 72, 0.14),
+      0 0 24px rgba(255, 132, 73, 0.18);
+  }
+}
+
+@media (max-width: 720px) {
+  .video-offer-component {
+    padding: 30px 18px 26px;
+    border-radius: 18px;
+  }
+
+  .video-offer-component__title {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    margin-top: 18px;
+    line-height: 1.08;
+  }
+
+  .video-offer-component__subtitle {
+    margin-top: 18px;
+    font-size: 0.98rem;
+    line-height: 1.62;
+  }
+
+  .video-offer-component__urgency-tag {
+    margin-top: 18px;
+    font-size: 0.96rem;
+  }
+
+  .video-offer-component__price-card {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 12px 20px;
+  }
+
+  .video-offer-component__price {
+    display: block;
+    width: fit-content;
+    margin: 10px auto 0;
+    font-size: clamp(2rem, 9vw, 2.85rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    transform: none;
+  }
+
+  .video-offer-component__benefits {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .video-offer-component__benefits span {
+    width: 100%;
+  }
+
+  .video-offer-component__button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px 24px;
+    font-size: 0.98rem;
+    line-height: 1.25;
+    min-height: 0;
+  }
+
+  .video-offer-component__note {
+    margin-top: 18px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-offer-component,
+  .video-offer-component__button {
+    animation: none;
+    transition: none;
+  }
 }
 
 .pain-stack {
@@ -1800,7 +2029,7 @@ select {
 .pricing-body {
   display: grid;
   gap: 10px 24px;
-  padding: 26px 32px 14px;
+  padding: 30px 32px 22px;
 }
 
 .pricing-list {
@@ -1846,22 +2075,22 @@ select {
 }
 
 .pricing-footer {
-  padding: 18px 30px 26px;
+  padding: 24px 30px 30px;
   border-top: 1px solid rgba(22, 48, 64, 0.08);
 }
 
 .coupon-cta-card {
   max-width: 760px;
-  margin: 24px auto 0;
-  padding: 26px 22px;
+  margin: 30px auto 0;
+  padding: 22px 24px;
   display: grid;
   justify-items: center;
-  gap: 14px;
+  gap: 8px;
   text-align: center;
   border: 1px solid rgba(22, 48, 64, 0.08);
   border-radius: 26px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 251, 250, 0.92));
-  box-shadow: 0 18px 40px rgba(34, 68, 90, 0.08);
+  box-shadow: 0 14px 30px rgba(34, 68, 90, 0.06);
 }
 
 .coupon-cta-label,
@@ -1874,31 +2103,6 @@ select {
   font-size: 0.98rem;
   font-weight: 800;
   line-height: 1.5;
-}
-
-.coupon-cta-button {
-  width: min(100%, 460px);
-  min-height: 62px;
-  padding: 18px 26px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  text-align: center;
-  background: linear-gradient(135deg, #ff8a5c 0%, #ff6a3d 55%, #ff5a2f 100%);
-  box-shadow: 0 16px 32px rgba(255, 106, 61, 0.28);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-}
-
-.coupon-cta-button:hover,
-.coupon-cta-button:focus-visible {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 20px 38px rgba(255, 106, 61, 0.34);
-  filter: saturate(1.03);
 }
 
 .coupon-cta-note {
@@ -1914,8 +2118,8 @@ select {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 24px;
   color: var(--muted);
   font-size: 0.9rem;
   text-align: center;
@@ -1996,10 +2200,11 @@ select {
 }
 
 .pricing-access-note {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   text-align: center;
   color: #6c7a89;
-  font-size: 0.94rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .pricing-button:hover,
@@ -2776,13 +2981,13 @@ select {
     flex-shrink: 0;
     min-width: 142px;
     width: auto;
-    height: 52px;
-    padding: 0 20px;
+    height: 48px;
+    padding: 0 18px;
     border: none;
     border-radius: 18px;
     background: linear-gradient(135deg, #ff8a5c 0%, #ff6a3d 55%, #ff5a2f 100%);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -3001,21 +3206,14 @@ select {
   }
 
   .coupon-cta-card {
-    margin-top: 18px;
-    padding: 22px 16px;
-    gap: 12px;
+    margin-top: 22px;
+    padding: 18px 16px;
+    gap: 6px;
     border-radius: 22px;
   }
 
   .coupon-cta-label {
     font-size: 0.92rem;
-  }
-
-  .coupon-cta-button {
-    min-height: 58px;
-    padding: 16px 20px;
-    border-radius: 18px;
-    font-size: 0.94rem;
   }
 
   .coupon-cta-note {
