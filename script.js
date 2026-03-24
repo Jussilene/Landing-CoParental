@@ -1,9 +1,9 @@
 const PAYMENT_URL = "https://pay.hotmart.com/B104984952T?bid=1773947079101&offDiscount=PROMO50";
 
-const modal = document.querySelector(".checkout-modal");
-const modalCloseButtons = document.querySelectorAll("[data-close-checkout]");
+const modal = null;
+const modalCloseButtons = [];
 const modalOpenButtons = document.querySelectorAll("[data-open-checkout]");
-const continueCheckout = document.getElementById("continue-checkout");
+const continueCheckout = null;
 const allButtons = document.querySelectorAll(".button");
 const stickyMobileCta = document.querySelector(".cta-fixo-mobile");
 const interactiveCards = document.querySelectorAll([
@@ -178,34 +178,21 @@ const applyConversionCopy = () => {
 };
 
 const openCheckoutModal = () => {
-  applyCheckoutCopy();
-  modal.hidden = false;
-  modal.setAttribute("aria-hidden", "false");
-  stickyMobileCta?.setAttribute("hidden", "");
-  document.body.style.overflow = "hidden";
+  if (typeof fbq === "function") {
+    fbq("track", "InitiateCheckout");
+  }
+
+  window.location.href = PAYMENT_URL;
 };
 
 const closeCheckoutModal = () => {
-  if (!modal) {
-    return;
-  }
-
-  const activeElement = document.activeElement;
-  if (activeElement instanceof HTMLElement && modal.contains(activeElement)) {
-    activeElement.blur();
-  }
-
-  modal.hidden = true;
-  modal.setAttribute("aria-hidden", "true");
-  stickyMobileCta?.removeAttribute("hidden");
-  document.body.style.overflow = "";
+  return;
 };
 
 if (continueCheckout) {
   continueCheckout.setAttribute("href", PAYMENT_URL);
 }
 applyConversionCopy();
-applyCheckoutCopy();
 
 modalOpenButtons.forEach((button) => {
   button.addEventListener("click", openCheckoutModal);
@@ -216,7 +203,7 @@ modalCloseButtons.forEach((button) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !modal.hidden) {
+  if (event.key === "Escape" && modal && !modal.hidden) {
     closeCheckoutModal();
   }
 });
